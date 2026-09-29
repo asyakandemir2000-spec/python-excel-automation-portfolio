@@ -1,0 +1,24 @@
+==================================================
+                 INVOICE SUMMARY                  
+==================================================
+Invoice Number: INV-2026-001
+Date: September 29, 2026
+Due Date: October 15, 2026
+
+--------------------------------------------------
+CLIENT INFORMATION:
+--------------------------------------------------
+Name: Acme Global Corp
+Email: billing@acmeglobal.com
+Address: 123 Tech Avenue, New York, NY
+
+--------------------------------------------------
+BILLING DETAILS:
+--------------------------------------------------
+Description Qty Price Total
+Backend Automation Services 1 $1250.00 $1250.00
+--------------------------------------------------
+GRAND TOTAL: $1250.00
+==================================================
+Thank you for your business!
+
