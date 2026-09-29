@@ -8,15 +8,12 @@ time.sleep(1)
 
 file_path = "./invoice_sample.pdf"
 
-# Dosyanın klasörde var olup olmadığını kontrol ediyoruz
 if os.path.exists(file_path):
     print("File found! Starting secure data extraction pipeline...\n")
     
-    # Düz metin olarak kaydettiğimiz PDF dosyasını gerçekten açıp okuyoruz
     with open(file_path, "r", encoding="utf-8") as file:
         content = file.read()
     
-    # Metnin içindeki Invoice No, Client ve Total Amount bilgilerini ayıklıyoruz
     invoice_no = "INV-2026-001"
     client_name = "Acme Global Corp"
     total_amount = "$1,250.00"
@@ -30,7 +27,6 @@ if os.path.exists(file_path):
             total_amount = line.split("GRAND TOTAL:")[1].strip()
 
     try:
-        # Excel dosyasını oluşturup verileri satır satır yazıyoruz
         workbook = openpyxl.Workbook()
         sheet = workbook.active
         sheet.title = "Invoices"
@@ -51,4 +47,5 @@ else:
     print(f"Error: '{file_path}' not found in the directory. Please create the file first.")
 
 input("\nProcess finished! Press Enter to close this window...")
+
 
