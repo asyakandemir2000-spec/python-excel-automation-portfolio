@@ -1,27 +1,27 @@
 import openpyxl
-wb_test = openpyxl.Workbook()
-ws_test = wb_test.active
-ws_test.append(["Öğrenci Adı", "Vize", "Final"])
-ws_test.append(["Ahmet", 60, 80])
-ws_test.append(["Mehmet", 40, 50])
-ws_test.append(["Ayşe", 80, 90])
-wb_test.save("ogrenci_notlari.xlsx")
 
-dosya = openpyxl.load_workbook("ogrenci_notlari.xlsx")
-sayfa = dosya.active
+# Loading the Excel workbook
+workbook = openpyxl.load_workbook("./student_grades.xlsx")
+sheet = workbook["grades"]
 
-sayfa.cell(row=1, column=4, value="Ortalama")
+# Writing the header for the average calculation column
+sheet.cell(row=1, column=4, value="average")
 
-satir_sayisi = sayfa.max_row
+total_rows = sheet.max_row
 
-for satir in range(2, satir_sayisi + 1):
-    vize = sayfa.cell(row=satir, column=2).value
-    final = sayfa.cell(row=satir, column=3).value
+# Iterating through rows to calculate the weighted average
+for row in range(2, total_rows + 1):
+    midterm = sheet.cell(row=row, column=2).value
+    final = sheet.cell(row=row, column=3).value
     
-    # Ortalama hesaplama (%40 vize + %60 final)
-    ortalama = (vize * 0.4) + (final * 0.6)
-    
-    sayfa.cell(row=satir, column=4, value=ortalama)
+    if midterm is not None and final is not None:
+        average = (midterm * 0.4) + (final * 0.6)
+        sheet.cell(row=row, column=4, value=average)
 
-dosya.save("ogrenci_notlari_guncel.xlsx")
-print("1. Proje Başarıyla Çalıştı!")
+# Exporting into updated file name
+workbook.save("./student_grades_updated.xlsx")
+print("Excel grade automation completed successfully! Clean data saved.")
+
+# Keeping the terminal open until the user presses Enter
+input("\nProcess finished! Press Enter to close this window...")
+
